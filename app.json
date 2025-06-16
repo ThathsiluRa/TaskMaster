@@ -1,29 +1,39 @@
 {
   "expo": {
-    "name": "tasknotes",
+    "name": "TaskMaster",
     "slug": "tasknotes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.taskmaster.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.taskmaster.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "A comprehensive task management and note-taking app with categories, priorities, and more.",
+    "githubUrl": "https://github.com/yourusername/tasknotes",
+    "plugins": [
+      "expo-splash-screen"
+    ]
   }
 }
