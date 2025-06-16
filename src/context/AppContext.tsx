@@ -18,27 +18,14 @@ interface AppContextType {
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
-
 const STORAGE_KEY = '@TaskNotes:data';
 
 const initialData: AppData = {
   tasks: [],
   categories: [
-    {
-      id: '1',
-      name: 'Work',
-      color: '#BB86FC',
-    },
-    {
-      id: '2',
-      name: 'Personal',
-      color: '#03DAC6',
-    },
-    {
-      id: '3',
-      name: 'Shopping',
-      color: '#CF6679',
-    },
+    { id: '1', name: 'Work', color: '#BB86FC' },
+    { id: '2', name: 'Personal', color: '#03DAC6' },
+    { id: '3', name: 'Shopping', color: '#CF6679' },
   ],
   lastUpdated: new Date().toISOString(),
 };
@@ -46,12 +33,10 @@ const initialData: AppData = {
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [data, setData] = useState<AppData>(initialData);
 
-  // Load data from storage on mount
   useEffect(() => {
     loadData();
   }, []);
 
-  // Save data to storage whenever it changes
   useEffect(() => {
     saveData();
   }, [data]);
@@ -115,11 +100,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       ...prev,
       tasks: prev.tasks.map(task =>
         task.id === taskId
-          ? {
-              ...task,
-              completed: !task.completed,
-              updatedAt: new Date().toISOString(),
-            }
+          ? { ...task, completed: !task.completed, updatedAt: new Date().toISOString() }
           : task
       ),
     }));
@@ -149,10 +130,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setData(prev => ({
       ...prev,
       categories: prev.categories.filter(category => category.id !== categoryId),
-      // Remove category from tasks
-      tasks: prev.tasks.map(task =>
-        task.category === categoryId ? { ...task, category: undefined } : task
-      ),
     }));
   };
 

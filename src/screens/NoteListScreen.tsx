@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { format } from 'date-fns';
 import { RootStackParamList } from '../navigation/types';
 import { Note } from '../types';
-import { format } from 'date-fns';
 
 type NoteListScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'NoteList'>;
 };
 
-// Temporary mock data
 const mockNotes: Note[] = [
   {
     id: '1',
@@ -75,34 +75,29 @@ export default function NoteListScreen({ navigation }: NoteListScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#000000',
   },
   listContainer: {
     padding: 16,
     gap: 12,
   },
   noteCard: {
-    backgroundColor: 'white',
-    borderRadius: 12,
+    backgroundColor: '#1A1A1A',
     padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#333333',
   },
   noteTitle: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#FFFFFF',
     marginBottom: 8,
   },
   noteContent: {
-    color: '#666',
+    fontSize: 14,
+    color: '#CCCCCC',
     marginBottom: 12,
-    lineHeight: 20,
   },
   noteFooter: {
     flexDirection: 'row',
@@ -110,35 +105,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   categoryText: {
-    color: '#2196F3',
-    fontWeight: '500',
+    fontSize: 12,
+    color: '#666666',
   },
   dateText: {
-    color: '#666',
     fontSize: 12,
+    color: '#666666',
   },
   addButton: {
     position: 'absolute',
-    right: 20,
-    bottom: 20,
+    right: 16,
+    bottom: 16,
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#f4511e',
-    justifyContent: 'center',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    justifyContent: 'center',
+    elevation: 4,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowRadius: 4,
   },
   addButtonText: {
-    color: 'white',
     fontSize: 32,
+    color: '#000000',
     fontWeight: 'bold',
   },
 }); 

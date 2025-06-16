@@ -18,7 +18,6 @@ type NoteDetailsScreenProps = {
   route: RouteProp<RootStackParamList, 'NoteDetails'>;
 };
 
-// Temporary mock data (in a real app, this would come from a data store)
 const mockNote: Note = {
   id: '1',
   title: 'Project Ideas',
@@ -48,7 +47,6 @@ export default function NoteDetailsScreen({ navigation, route }: NoteDetailsScre
           text: 'Delete',
           style: 'destructive',
           onPress: () => {
-            // TODO: Implement note deletion
             navigation.goBack();
           },
         },
@@ -57,116 +55,108 @@ export default function NoteDetailsScreen({ navigation, route }: NoteDetailsScre
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.content}>
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollView}>
         <View style={styles.header}>
           <Text style={styles.title}>{note.title}</Text>
-          {note.category && (
-            <View style={styles.categoryContainer}>
-              <Text style={styles.categoryText}>{note.category}</Text>
-            </View>
-          )}
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.noteContent}>{note.content}</Text>
-        </View>
-
-        <View style={styles.metadata}>
-          <Text style={styles.metadataText}>
-            Created: {formatDate(note.createdAt)}
-          </Text>
-          <Text style={styles.metadataText}>
-            Updated: {formatDate(note.updatedAt)}
-          </Text>
-        </View>
-
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={[styles.button, styles.editButton]}
-            onPress={() => navigation.navigate('NoteForm', { noteId: note.id })}
-          >
-            <Text style={styles.buttonText}>Edit Note</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, styles.deleteButton]}
-            onPress={handleDelete}
-          >
-            <Text style={[styles.buttonText, styles.deleteButtonText]}>
-              Delete Note
+          <View style={styles.metaInfo}>
+            <Text style={styles.category}>{note.category}</Text>
+            <Text style={styles.date}>
+              Updated: {formatDate(note.updatedAt)}
             </Text>
-          </TouchableOpacity>
+          </View>
         </View>
+
+        <View style={styles.content}>
+          <Text style={styles.noteText}>{note.content}</Text>
+        </View>
+      </ScrollView>
+
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={[styles.footerButton, styles.editButton]}
+          onPress={() => navigation.navigate('NoteForm', { noteId: note.id })}
+        >
+          <Text style={styles.editButtonText}>Edit</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.footerButton, styles.deleteButton]}
+          onPress={handleDelete}
+        >
+          <Text style={styles.deleteButtonText}>Delete</Text>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#000000',
   },
-  content: {
-    padding: 16,
+  scrollView: {
+    flex: 1,
   },
   header: {
-    marginBottom: 24,
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#333333',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: '#FFFFFF',
     marginBottom: 8,
   },
-  categoryContainer: {
-    backgroundColor: '#e3f2fd',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 16,
-    alignSelf: 'flex-start',
+  metaInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  categoryText: {
-    color: '#1976d2',
-    fontWeight: '500',
-  },
-  section: {
-    marginBottom: 24,
-  },
-  noteContent: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333',
-  },
-  metadata: {
-    marginBottom: 24,
-    gap: 4,
-  },
-  metadataText: {
-    color: '#666',
+  category: {
     fontSize: 14,
+    color: '#666666',
   },
-  buttonContainer: {
+  date: {
+    fontSize: 14,
+    color: '#666666',
+  },
+  content: {
+    padding: 16,
+  },
+  noteText: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    lineHeight: 24,
+  },
+  footer: {
+    flexDirection: 'row',
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#333333',
     gap: 12,
   },
-  button: {
+  footerButton: {
+    flex: 1,
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',
   },
   editButton: {
-    backgroundColor: '#f4511e',
+    backgroundColor: '#FFFFFF',
   },
-  deleteButton: {
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: '#f44336',
-  },
-  buttonText: {
-    color: 'white',
+  editButtonText: {
+    color: '#000000',
     fontSize: 16,
     fontWeight: 'bold',
   },
+  deleteButton: {
+    backgroundColor: '#333333',
+  },
   deleteButtonText: {
-    color: '#f44336',
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 }); 

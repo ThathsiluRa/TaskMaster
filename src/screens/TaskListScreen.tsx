@@ -16,7 +16,6 @@ import { Task, Priority } from '../types';
 
 type TaskListScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'TaskList'>;
 
-// Temporary mock data
 const mockTasks: Task[] = [
   {
     id: '1',
@@ -76,35 +75,36 @@ export default function TaskListScreen() {
     }
   };
 
-  const renderTask = ({ item: task }: { item: Task }) => (
+  const renderTask = ({ item }: { item: Task }) => (
     <TouchableOpacity
-      style={[styles.taskCard, task.completed && styles.taskCardCompleted]}
-      onPress={() => navigation.navigate('TaskDetails', { taskId: task.id })}
+      style={[styles.taskCard, item.completed && styles.taskCardCompleted]}
+      onPress={() => navigation.navigate('TaskDetails', { taskId: item.id })}
     >
-      <TouchableOpacity
-        style={[styles.checkbox, task.completed && styles.checkboxCompleted]}
-        onPress={() => toggleTaskCompletion(task.id)}
-      >
-        {task.completed && <Ionicons name="checkmark" size={16} color="#000000" />}
-      </TouchableOpacity>
-
-      <View style={styles.taskContent}>
-        <Text style={[styles.taskTitle, task.completed && styles.taskTitleCompleted]}>
-          {task.title}
+      <View style={styles.taskHeader}>
+        <TouchableOpacity
+          style={[styles.checkbox, item.completed && styles.checkboxCompleted]}
+          onPress={() => toggleTaskCompletion(item.id)}
+        >
+          {item.completed && <Ionicons name="checkmark" size={16} color="#000000" />}
+        </TouchableOpacity>
+        <Text style={[styles.taskTitle, item.completed && styles.taskTitleCompleted]}>
+          {item.title}
         </Text>
-        {task.description && (
-          <Text style={styles.taskDescription} numberOfLines={2}>
-            {task.description}
-          </Text>
-        )}
-        <View style={styles.taskMeta}>
-          <View style={[styles.priorityBadge, getPriorityStyle(task.priority)]}>
-            <Text style={styles.priorityText}>{task.priority}</Text>
+      </View>
+      {item.description && (
+        <Text style={styles.taskDescription} numberOfLines={2}>
+          {item.description}
+        </Text>
+      )}
+      <View style={styles.taskFooter}>
+        {item.priority && (
+          <View style={[styles.priorityBadge, getPriorityStyle(item.priority)]}>
+            <Text style={styles.priorityText}>{item.priority}</Text>
           </View>
-          <Text style={styles.dueDate}>
-            Due: {new Date(task.dueDate).toLocaleDateString()}
-          </Text>
-        </View>
+        )}
+        {item.category && (
+          <Text style={styles.categoryText}>{item.category}</Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -154,7 +154,7 @@ export default function TaskListScreen() {
       <FlatList
         data={filteredTasks}
         renderItem={renderTask}
-        keyExtractor={task => task.id}
+        keyExtractor={item => item.id}
         contentContainerStyle={styles.taskList}
         showsVerticalScrollIndicator={false}
       />
@@ -231,6 +231,11 @@ const styles = StyleSheet.create({
   taskCardCompleted: {
     opacity: 0.7,
   },
+  taskHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
   checkbox: {
     width: 24,
     height: 24,
@@ -243,9 +248,6 @@ const styles = StyleSheet.create({
   },
   checkboxCompleted: {
     backgroundColor: '#BB86FC',
-  },
-  taskContent: {
-    flex: 1,
   },
   taskTitle: {
     fontSize: 16,
@@ -262,9 +264,12 @@ const styles = StyleSheet.create({
     color: '#CCCCCC',
     marginBottom: 8,
   },
-  taskMeta: {
+  taskFooter: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 12,
+    marginLeft: 36,
+    gap: 8,
   },
   priorityBadge: {
     paddingHorizontal: 8,
@@ -287,7 +292,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textTransform: 'capitalize',
   },
-  dueDate: {
+  categoryText: {
     fontSize: 12,
     color: '#666666',
   },
