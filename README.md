@@ -1,6 +1,6 @@
 # TaskNotes Mobile App
 
-A comprehensive task management and note-taking mobile application built with React Native and Expo.
+A task management and note-taking mobile application built with React Native and Expo.
 
 ## ✨ Features
 
@@ -12,18 +12,7 @@ A comprehensive task management and note-taking mobile application built with Re
 - Set due dates
 - Visual priority indicators
 
-### Note Taking
-- Create and edit rich notes
-- Categorize notes
-- Search through notes
-- Track creation and update times
-
-### Smart Organization
-- Search across tasks and notes
-- Filter by categories
-- Responsive mobile-first design
-- Local storage persistence
-
+  
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -36,7 +25,7 @@ A comprehensive task management and note-taking mobile application built with Re
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/tasknotes.git
+git clone https://github.com/ThathsiluRa/TaskMaster
 cd tasknotes
 ```
 
@@ -61,7 +50,10 @@ yarn start
 
 ## 📱 Screenshots
 
-(Screenshots will be added as the app development progresses)
+[![IMG-4429.png](https://i.postimg.cc/bNzMpn5v/IMG-4429.png)](https://postimg.cc/t7MDzsp0)
+[![IMG-4431.png](https://i.postimg.cc/66d3DssX/IMG-4431.png)](https://postimg.cc/YjCMWsqn)
+[![IMG-4430.png](https://i.postimg.cc/GhWX9s7Y/IMG-4430.png)](https://postimg.cc/MvY7FX8K)
+
 
 ## 🛠️ Built With
 
@@ -71,16 +63,6 @@ yarn start
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) - Local storage
 - [date-fns](https://date-fns.org/) - Date utility library
 
-## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/tasknotes/issues).
-
-## 📫 Contact
-
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
-
-Project Link: [https://github.com/yourusername/tasknotes](https://github.com/yourusername/tasknotes) 
+Thathsilu - [@thathsilu_r](https://www.instagram.com/thathsilu_r/)
+            [thathsilu.com](https://www.thathsilu.com/)
