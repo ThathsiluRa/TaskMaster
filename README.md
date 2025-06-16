@@ -59,9 +59,6 @@ yarn start
 
 - [React Native](https://reactnative.dev/) - Mobile app framework
 - [Expo](https://expo.dev/) - Development platform
-- [React Navigation](https://reactnavigation.org/) - Navigation library
-- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) - Local storage
-- [date-fns](https://date-fns.org/) - Date utility library
 
 
 Thathsilu - [@thathsilu_r](https://www.instagram.com/thathsilu_r/)
